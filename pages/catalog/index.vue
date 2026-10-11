@@ -105,6 +105,13 @@ const page = ref(Number(route.query.page) || 1);
 const limit = ref(Number(route.query.limit) || 10);
 const sort = ref(route.query.sort?.toString() || 'date_desc');
 
+useHead({
+  title: "Каталог товаров",
+  meta: [
+    {name: 'description', content: 'Тут самые классные цацки'}
+  ]
+})
+
 const selectDefault = {
   value: '',
   label: 'Категории'

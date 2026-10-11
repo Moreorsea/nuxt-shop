@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      title: 'Магазин Shoppe',
+      titleTemplate: '%s | Shoppe',
+      htmlAttrs: {
+        lang: 'ru'
+      },
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -24,7 +29,24 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
   ],
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3020',
+    name: 'Shoppe',
+  },
+  sitemap: {
+    sources: ['/api/sitemap/urls'],
+    defaults: {
+      lastmod: new Date().toISOString(),
+      priority: 0.5,
+      changefreq: 'weekly'
+    }
+  },
+  robots: {
+    disallow: '/auth/account'
+  },
   fonts: {
     families: [
       { name: 'Jost', provider: 'google', weights: [400, 500, 600] },
